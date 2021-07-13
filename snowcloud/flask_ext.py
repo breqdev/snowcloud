@@ -1,5 +1,3 @@
-import threading
-
 from flask import current_app
 
 from snowcloud.generator import Snowcloud
@@ -14,22 +12,22 @@ class SnowcloudFlask():
         app.config.setdefault("SNOWCLOUD_URL", "")
         app.config.setdefault("SNOWCLOUD_KEY", "")
 
-        app.snowclouds = {}
         app.before_first_request(self.before_first_request)
 
     def before_first_request(self):
-        current_app.snowclouds[threading.get_native_id()] = self.create_client()
+        current_app.snowcloud = self.create_client()
 
     def create_client(self):
+        print("creating client")
         cloud = Snowcloud(
             current_app.config["SNOWCLOUD_URL"],
             current_app.config["SNOWCLOUD_KEY"]
         )
 
         cloud.register()
-        cloud.start_autorenew()
+        print("worker id", cloud.worker_id)
 
         return cloud
 
     def generate(self):
-        return current_app.snowclouds[threading.get_native_id()].generate()
+        return current_app.snowcloud.generate()
