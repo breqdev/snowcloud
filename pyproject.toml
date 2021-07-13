@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "snowcloud"
+version = "0.1.0"
+description = "Service for generating unique, time-ordered IDs across distributed worker processes."
+authors = ["Brooke Chalmers <breq@breq.dev>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25.1"
+redis = "^3.5.3"
+Flask = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
