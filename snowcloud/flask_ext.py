@@ -14,6 +14,7 @@ class SnowcloudFlask():
         app.config.setdefault("SNOWCLOUD_URL", "")
         app.config.setdefault("SNOWCLOUD_KEY", "")
 
+        app.snowclouds = {}
         app.before_first_request(self.before_first_request)
 
     def before_first_request(self):
