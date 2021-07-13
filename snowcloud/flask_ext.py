@@ -18,14 +18,12 @@ class SnowcloudFlask():
         current_app.snowcloud = self.create_client()
 
     def create_client(self):
-        print("creating client")
         cloud = Snowcloud(
             current_app.config["SNOWCLOUD_URL"],
             current_app.config["SNOWCLOUD_KEY"]
         )
 
         cloud.register()
-        print("worker id", cloud.worker_id)
 
         return cloud
 
